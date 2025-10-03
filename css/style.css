@@ -1,0 +1,3355 @@
+/* ===============================
+   Reset & Base
+=============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: 
+        /* 透明感のある微細パターン */
+        radial-gradient(circle at 10% 20%, rgba(248, 250, 252, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(241, 245, 249, 0.02) 0%, transparent 50%),
+        /* ベース背景 */
+        linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.98) 0%, 
+            rgba(248, 250, 252, 0.95) 50%,
+            rgba(255, 255, 255, 0.98) 100%
+        );
+    backdrop-filter: blur(1px);
+    min-height: 100vh;
+}
+
+/* ===============================
+   カラーパレット（シャンパンベージュ系）
+=============================== */
+:root {
+    --color-champagne: #E5DCC5;
+    --color-champagne-light: #F0E9D6;
+    --color-champagne-dark: #C5A572;
+    --color-champagne-accent: #A68B5B;
+    --transition-fast: 0.3s ease;
+    --transition-smooth: 0.4s ease;
+    --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ===============================
+   Typography
+=============================== */
+.font-display {
+    font-family: 'Playfair Display', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #374151;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    cursor: default;
+    font-family: 'Playfair Display', serif;
+}
+
+.section-title:hover {
+    color: var(--color-champagne-dark);
+    transform: translateY(-2px);
+    text-shadow: 0 4px 12px rgba(197, 165, 114, 0.2);
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: #6B7280;
+    margin-bottom: 3rem;
+    transition: all 0.3s ease;
+    cursor: default;
+    font-family: 'Roboto', sans-serif;
+}
+
+.section-subtitle:hover {
+    color: #4B5563;
+    transform: translateY(-1px);
+}
+
+/* ===============================
+   ヘッダー - 洗練された透明度システム
+=============================== */
+.header-main {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(229, 220, 197, 0.3);
+}
+
+.nav-link-elegant {
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link-elegant:hover {
+    background: linear-gradient(135deg, var(--color-champagne), var(--color-champagne-light));
+    color: var(--color-champagne-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(229, 220, 197, 0.4);
+}
+
+.nav-link-elegant::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-champagne), var(--color-champagne-dark));
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link-elegant:hover::after {
+    width: 80%;
+}
+
+/* ===============================
+   ハンバーガーメニュー（モバイル専用）
+=============================== */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.5rem;
+    gap: 4px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #374151;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* モバイルナビゲーション */
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(229, 220, 197, 0.3);
+    padding: 1rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-nav.active {
+    display: block;
+}
+
+.mobile-nav-link {
+    display: block;
+    color: #374151;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    margin: 0 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.mobile-nav-link:hover {
+    background: linear-gradient(135deg, var(--color-champagne), var(--color-champagne-light));
+    color: var(--color-champagne-dark);
+}
+
+/* デスクトップではハンバーガーを非表示 */
+@media (min-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+    
+    .mobile-nav {
+        display: none !important;
+    }
+}
+
+/* モバイルではデスクトップナビを非表示 */
+@media (max-width: 767px) {
+    .hidden.md\\:flex {
+        display: none !important;
+    }
+}
+
+/* ===============================
+   エレガントなスクロールインジケーター
+=============================== */
+.elegant-scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-text {
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: #2D3748;
+    margin-bottom: 0.5rem;
+}
+
+.scroll-icon {
+    margin: 0.5rem auto;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 2rem;
+    background: linear-gradient(to bottom, #2D3748, transparent);
+    margin: 0 auto;
+}
+
+/* ===============================
+   GSAPアニメーション用クラス
+=============================== */
+.gsap-fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.gsap-fade-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===============================
+   ヒーローセクション（洗練版）
+=============================== */
+.hero-section-fullscreen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+}
+
+.hero-video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    text-align: center;
+}
+
+/* 動画の上にオーバーレイを追加して、テキストの視認性を確保 */
+.hero-section-fullscreen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 0;
+}
+
+.hero-title {
+    font-size: 4rem;
+    letter-spacing: 0.15em;
+    color: #333;
+    font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+    font-weight: 400;
+    line-height: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.premium-text {
+    font-size: 1.5rem;
+    color: #2D3748;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    line-height: 1.8;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+    animation: fadeInUp 1.2s ease forwards;
+    animation-delay: 1.5s;
+}
+
+.premium-highlight {
+    font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    color: #1A202C;
+    position: relative;
+    padding: 0 0.2em;
+    transition: all 0.3s ease;
+}
+
+/* ポートフォリオタイトルのスタイル */
+.text-2xl.md\:text-3xl {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+    animation: fadeInUp 1.2s ease forwards;
+    animation-delay: 1.8s;
+}
+
+.w-12.h-px.mx-auto.mt-2 {
+    opacity: 0;
+    transform: scaleX(0);
+    animation: expandLine 1s ease forwards;
+    animation-delay: 2s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes expandLine {
+    from {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+/* ===============================
+   ボタン（セクション別高級デザイン）
+=============================== */
+
+/* 基本のボタンスタイル - シンプルベース */
+.btn-champagne {
+    color: #2D3748;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 100px;
+    justify-content: center;
+    font-size: 0.875rem;
+    background: transparent;
+    border: 1px solid #2D3748;
+    z-index: 1;
+}
+
+.btn-champagne::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #2D3748, #4A5568);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.btn-champagne:hover {
+    color: white;
+    border-color: #2D3748;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-subtle);
+}
+
+.btn-champagne:hover::before {
+    left: 0;
+}
+
+/* About Preview セクション - ミニマルライン（紺色系統） */
+section#preview .btn-champagne,
+.about-preview .btn-champagne {
+    background: transparent;
+    border: 1px solid rgba(45, 55, 72, 0.2);
+    border-radius: 0;
+    color: #2D3748;
+    position: relative;
+    transition: all var(--transition-fast);
+}
+
+section#preview .btn-champagne:hover,
+.about-preview .btn-champagne:hover {
+    color: #1A202C;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-subtle);
+    border-color: #2D3748;
+    border-width: 2px;
+}
+
+/* Featured Works セクション - エレガントフレーム（柔らかいシャンパンベージュ系） */
+.featured-works .btn-champagne {
+    background: linear-gradient(135deg, #fefcf1, #f9f7f0);
+    border: 2px solid transparent;
+    border-radius: 0;
+    color: var(--color-champagne-dark);
+    position: relative;
+    background-clip: padding-box;
+    transition: transform var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.featured-works .btn-champagne::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--color-champagne), var(--color-champagne-light), var(--color-champagne-dark), var(--color-champagne));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    background-size: 200% 200%;
+    animation: soft-gradient-border 3s ease infinite;
+}
+
+.featured-works .btn-champagne::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(229, 220, 197, 0.2), transparent);
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+.featured-works .btn-champagne:hover {
+    color: var(--color-champagne-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.featured-works .btn-champagne:hover::before {
+    opacity: 1;
+}
+
+.featured-works .btn-champagne:hover::after {
+    left: 100%;
+}
+
+/* Contact CTA セクション - プレミアムグラス（視認性向上版） */
+.contact-cta .btn-champagne {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0;
+    color: white;
+    backdrop-filter: blur(10px);
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-cta .btn-champagne::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.contact-cta .btn-champagne::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.4), transparent, rgba(255, 255, 255, 0.4));
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: -2;
+    background-size: 200% 200%;
+    animation: glass-shimmer 3s ease infinite;
+}
+
+.contact-cta .btn-champagne:hover::before {
+    opacity: 1;
+}
+
+.contact-cta .btn-champagne:hover::after {
+    opacity: 1;
+}
+
+.contact-cta .btn-champagne:hover {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+/* カード内のボタン - モダンアンダーライン（紺色系統） */
+.card .btn-champagne,
+.card a[href*="works"] {
+    background: transparent;
+    color: #2D3748 !important;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8rem;
+    position: relative;
+    overflow: hidden;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0;
+    transition: all 0.4s ease;
+    display: inline-block;
+    min-width: 70px;
+    text-align: center;
+}
+
+.card .btn-champagne::before,
+.card a[href*="works"]::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #2D3748, #4A5568, #2D3748);
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+.card:hover .btn-champagne::before,
+.card:hover a[href*="works"]::before {
+    width: 100%;
+}
+
+.card:hover .btn-champagne,
+.card:hover a[href*="works"] {
+    color: #1A202C !important;
+    transform: translateY(-1px);
+    letter-spacing: 0.5px;
+}
+
+/* アニメーション定義 */
+@keyframes gradient-border {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes glass-shimmer {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* 柔らかいグラデーションアニメーション */
+@keyframes soft-gradient-border {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* ===============================
+   About Preview Section
+=============================== */
+.about-preview-main-card {
+    background: 
+        /* 透明感のあるグラス効果 */
+        linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.85) 0%, 
+            rgba(248, 250, 252, 0.8) 25%,
+            rgba(255, 255, 255, 0.9) 50%,
+            rgba(248, 250, 252, 0.85) 75%,
+            rgba(255, 255, 255, 0.85) 100%
+        );
+    border-radius: 1rem;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.04),
+        0 8px 16px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 -1px 0 rgba(226, 232, 240, 0.2);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.2);
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 450px;
+    position: relative;
+}
+
+.about-card-content {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* プロフィール画像エリア */
+.profile-image-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: 
+        linear-gradient(135deg, 
+            rgba(229, 220, 197, 0.15) 0%, 
+            rgba(240, 233, 214, 0.12) 50%,
+            rgba(229, 220, 197, 0.18) 100%
+        );
+    backdrop-filter: blur(8px);
+    transition: all 0.5s ease;
+    z-index: 1;
+}
+
+.profile-image-container:hover {
+    background: 
+        linear-gradient(135deg, 
+            rgba(229, 220, 197, 0.25) 0%, 
+            rgba(197, 165, 114, 0.15) 50%,
+            rgba(166, 139, 91, 0.2) 100%
+        );
+    backdrop-filter: blur(12px);
+}
+
+.profile-image-frame {
+    position: relative;
+    width: 240px;
+    height: 180px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 3px solid var(--color-champagne-dark);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.profile-image-frame::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, var(--color-champagne-accent), var(--color-champagne), var(--color-champagne-dark), var(--color-champagne-accent));
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: all 0.5s ease;
+    animation: rotate 3s linear infinite paused;
+}
+
+.profile-image-frame:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.profile-image-frame:hover {
+    transform: scale(1.08) rotate(-2deg);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.3), 
+        0 0 40px rgba(197, 165, 114, 0.5),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    border-color: var(--color-champagne-accent);
+    border-width: 4px;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.profile-image-frame:hover .profile-image {
+    transform: scale(1.15) rotate(2deg);
+    filter: brightness(1.15) contrast(1.1) saturate(1.2);
+}
+
+/* 装飾要素の追加 */
+.profile-image-frame::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease 0.2s;
+    z-index: 2;
+}
+
+.profile-image-frame:hover::after {
+    opacity: 1;
+    transform: scale(1);
+    animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* プロフィール画像の装飾要素にもホバー効果 */
+.profile-image-container:hover .profile-name {
+    color: var(--color-champagne-accent);
+    transform: translateY(-3px) scale(1.05);
+    text-shadow: 0 2px 8px rgba(197, 165, 114, 0.3);
+}
+
+.profile-image-container:hover .profile-title {
+    transform: translateY(-2px);
+    color: #4B5563;
+}
+
+.profile-info {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-champagne-dark);
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.profile-title {
+    font-size: 0.875rem;
+    color: #6B7280;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.skill-tag-champagne {
+    background: linear-gradient(135deg, var(--color-champagne) 0%, var(--color-champagne-light) 100%);
+    color: var(--color-champagne-dark);
+    padding: 0.375rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid var(--color-champagne-dark);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-tag-champagne:hover {
+    background: linear-gradient(135deg, var(--color-champagne-dark) 0%, var(--color-champagne-accent) 100%);
+    color: white;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(197, 165, 114, 0.4), 0 4px 12px rgba(197, 165, 114, 0.2);
+    border-color: var(--color-champagne-accent);
+}
+
+.skill-tag-champagne::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.5s ease;
+}
+
+.skill-tag-champagne:hover::before {
+    left: 100%;
+}
+
+/* 高級感のある強調スタイル */
+.highlight-subtle {
+    position: relative;
+    color: var(--color-champagne-dark);
+    font-weight: 600;
+    font-style: italic;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.highlight-subtle:hover {
+    color: var(--color-champagne-accent);
+    transform: translateY(-1px);
+    text-shadow: 0 2px 8px rgba(197, 165, 114, 0.3);
+}
+
+.highlight-subtle::before,
+.highlight-subtle::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-champagne), transparent);
+    transition: all 0.3s ease;
+}
+
+.highlight-subtle:hover::before,
+.highlight-subtle:hover::after {
+    background: linear-gradient(90deg, transparent, var(--color-champagne-accent), transparent);
+    height: 2px;
+}
+
+.highlight-subtle::before {
+    top: -2px;
+}
+
+.highlight-subtle::after {
+    bottom: -2px;
+}
+
+.highlight-emphasis {
+    position: relative;
+    color: var(--color-champagne-dark);
+    font-weight: 600;
+    font-style: italic;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    padding-left: 0;
+}
+
+.highlight-emphasis:hover {
+    color: var(--color-champagne-accent);
+    padding-left: 1.2rem;
+    text-shadow: 0 2px 12px rgba(197, 165, 114, 0.4);
+    transform: translateX(3px);
+}
+
+.highlight-emphasis::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: linear-gradient(180deg, var(--color-champagne-accent), var(--color-champagne-dark));
+    border-radius: 3px;
+    transition: all 0.4s ease;
+    opacity: 0;
+}
+
+.highlight-emphasis:hover::before {
+    width: 4px;
+    opacity: 1;
+    box-shadow: 0 0 12px rgba(197, 165, 114, 0.6), 0 0 20px rgba(197, 165, 114, 0.3);
+}
+
+.highlight-emphasis::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 0;
+    background: linear-gradient(90deg, var(--color-champagne-accent) 0%, transparent 70%);
+    transition: all 0.4s ease;
+    opacity: 0;
+}
+
+.highlight-emphasis:hover::after {
+    height: 2px;
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(197, 165, 114, 0.5);
+}
+
+.highlight-italic {
+    position: relative;
+    color: var(--color-champagne-dark);
+    font-weight: 600;
+    font-style: italic;
+    font-family: 'Lora', serif;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.highlight-italic:hover {
+    color: var(--color-champagne-accent);
+    transform: scale(1.05);
+    text-shadow: 0 2px 8px rgba(197, 165, 114, 0.3);
+}
+
+.highlight-italic::before,
+.highlight-italic::after {
+    content: '';
+    position: absolute;
+    left: -4px;
+    right: -4px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 10%, var(--color-champagne-dark) 50%, transparent 90%);
+    transition: all 0.3s ease;
+}
+
+.highlight-italic:hover::before,
+.highlight-italic:hover::after {
+    background: linear-gradient(90deg, transparent 10%, var(--color-champagne-accent) 50%, transparent 90%);
+    height: 2px;
+    box-shadow: 0 0 6px rgba(197, 165, 114, 0.4);
+}
+
+.highlight-italic::before {
+    top: -1px;
+}
+
+.highlight-italic::after {
+    bottom: -1px;
+}
+
+/* ===============================
+   カード（洗練されたデザイン）
+=============================== */
+.card {
+    background: 
+        linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.9) 0%, 
+            rgba(248, 250, 252, 0.85) 100%
+        );
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.04),
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    transition: all 0.4s ease;
+    position: relative;
+    border: 1px solid rgba(229, 220, 197, 0.15);
+    backdrop-filter: blur(8px);
+}
+
+/* ===============================
+   Works カード強化
+=============================== */
+.work-card {
+    background: #ffffff;
+    border: 1px solid rgba(229, 231, 235, 0.8); /* slate-200 */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.work-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.10);
+    border-color: rgba(197, 165, 114, 0.5); /* champagne accent */
+}
+
+.work-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.work-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.work-card:hover .work-image {
+    transform: scale(1.06);
+}
+
+.work-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: end;
+}
+
+.work-card:hover .work-overlay {
+    opacity: 1;
+}
+
+.work-overlay-content {
+    width: 100%;
+    color: #ffffff;
+    padding: 0.9rem;
+}
+
+.work-content {
+    padding: 1rem 1rem 1.1rem;
+}
+
+.work-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1f2937; /* gray-800 */
+    margin-bottom: 0.35rem;
+}
+
+.work-description {
+    color: #6b7280; /* gray-500 */
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+}
+
+.work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.work-tag {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.55rem;
+}
+
+.btn-small, .btn-small-outline {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+}
+
+.btn-small {
+    background: #ffffff;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+}
+
+.btn-small:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.btn-small-outline {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.7);
+}
+
+.btn-small-outline:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 
+        0 32px 64px rgba(0, 0, 0, 0.08),
+        0 16px 32px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(229, 220, 197, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: rgba(229, 220, 197, 0.3);
+    backdrop-filter: blur(16px);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-champagne), var(--color-champagne-accent), var(--color-champagne-dark));
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: all 0.4s ease;
+}
+
+.card:hover .card-image {
+    transform: scale(1.1);
+    filter: brightness(1.05) saturate(1.1);
+}
+
+.card-content {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.card:hover .card-content {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #374151;
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-title {
+    color: var(--color-champagne-dark);
+    transform: translateY(-2px);
+}
+
+.card-description {
+    color: #6B7280;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-description {
+    color: #4B5563;
+}
+
+.card-tag-champagne {
+    background: var(--color-champagne);
+    color: var(--color-champagne-dark);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.card:hover .card-tag-champagne {
+    background: var(--color-champagne-dark);
+    color: white;
+    transform: translateY(-1px);
+    border-color: var(--color-champagne-accent);
+}
+
+/* カード内のリンクスタイル */
+.card a {
+    color: var(--color-champagne-dark);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.card a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-champagne-accent);
+    transition: all 0.3s ease;
+}
+
+.card:hover a {
+    color: var(--color-champagne-accent);
+}
+
+.card:hover a::after {
+    width: 100%;
+}
+
+/* ===============================
+   フッター
+=============================== */
+.footer {
+    background: 
+        linear-gradient(135deg, 
+            rgba(31, 41, 55, 0.98) 0%, 
+            rgba(17, 24, 39, 0.95) 100%
+        );
+    backdrop-filter: blur(12px);
+    color: white;
+    padding: 3rem 0 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer-text {
+    color: #D1D5DB;
+    line-height: 1.6;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    color: #D1D5DB;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--color-champagne);
+}
+
+/* SNSアイコンの控えめなホバー演出（全ページ共通） */
+.footer .social-link,
+.social-links .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    transition: transform 0.2s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+    background-color: transparent;
+}
+
+.footer .social-link svg,
+.social-links .social-link svg {
+    transition: transform 0.2s ease;
+}
+
+.footer .social-link:hover,
+.social-links .social-link:hover {
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(197, 165, 114, 0.18);
+}
+
+.footer .social-link:hover svg,
+.social-links .social-link:hover svg {
+    transform: scale(1.08);
+}
+
+.footer .social-link:focus-visible,
+.social-links .social-link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(197, 165, 114, 0.35), 0 6px 18px rgba(0, 0, 0, 0.12);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.footer .social-link:active,
+.social-links .social-link:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer .social-link,
+    .footer .social-link svg,
+    .social-links .social-link,
+    .social-links .social-link svg {
+        transition: none !important;
+    }
+}
+
+.footer-copy {
+    border-top: 1px solid #374151;
+    padding-top: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: #9CA3AF;
+}
+
+/* フッターリンク - 両サイドから中央に集まるゴールドライン */
+.footer a:not(.social-link) {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.footer a:not(.social-link)::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4af37, #b8860b);
+    transition: all 0.4s ease;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
+.footer a:not(.social-link)::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #b8860b, #d4af37, transparent);
+    transition: all 0.4s ease;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
+.footer a:not(.social-link):hover::before {
+    width: 50%;
+}
+
+.footer a:not(.social-link):hover::after {
+    width: 50%;
+}
+
+.footer a:not(.social-link):hover {
+    color: #d4af37;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+/* ===============================
+   レスポンシブ
+=============================== */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .about-card-content {
+        flex-direction: column;
+    }
+    
+    .profile-image-frame {
+        width: 200px;
+        height: 150px;
+    }
+    
+    .skill-tags {
+        gap: 0.25rem;
+    }
+}
+
+/* 縦長プロフィール画像の魅力的なホバー効果 */
+.profile-image-vertical-container {
+    position: relative;
+    display: inline-block;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.profile-image-vertical-container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: conic-gradient(from 0deg, var(--color-champagne-accent), var(--color-champagne), var(--color-champagne-dark), var(--color-champagne-accent));
+    border-radius: 1rem;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.5s ease;
+    animation: rotate 3s linear infinite paused;
+}
+
+.profile-image-vertical-container:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.profile-image-vertical-container:hover {
+    transform: scale(1.05) rotate(-1deg);
+}
+
+.profile-image-vertical {
+    border-radius: 0.75rem;
+    transition: all 0.5s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border: 3px solid var(--color-champagne-dark);
+}
+
+.profile-image-vertical-container:hover .profile-image-vertical {
+    transform: scale(1.1);
+    filter: brightness(1.08) contrast(1.05) saturate(1.05);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.3), 
+        0 0 40px rgba(197, 165, 114, 0.5),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    border-color: var(--color-champagne-accent);
+    border-width: 4px;
+}
+
+/* 装飾フレームのホバー効果 */
+.profile-image-vertical-container:hover .absolute {
+    transform: scale(1.02);
+}
+
+.profile-image-vertical-container:hover .absolute:nth-child(2) {
+    border-color: var(--color-champagne) !important;
+    box-shadow: 0 0 20px rgba(197, 165, 114, 0.3);
+}
+
+.profile-image-vertical-container:hover .absolute:nth-child(3) {
+    border-color: var(--color-champagne-accent) !important;
+    box-shadow: 0 0 15px rgba(197, 165, 114, 0.2);
+}
+
+/* 装飾ドットのアニメーション */
+.profile-image-vertical-container .absolute:last-child,
+.profile-image-vertical-container .absolute:nth-last-child(2) {
+    transition: all 0.3s ease;
+}
+
+.profile-image-vertical-container:hover .absolute:last-child {
+    transform: scale(1.3) rotate(180deg);
+    background-color: var(--color-champagne-accent) !important;
+    box-shadow: 0 0 15px rgba(197, 165, 114, 0.6);
+}
+
+.profile-image-vertical-container:hover .absolute:nth-last-child(2) {
+    transform: scale(1.2) rotate(-180deg);
+    background-color: var(--color-champagne-dark) !important;
+    box-shadow: 0 0 10px rgba(197, 165, 114, 0.4);
+}
+
+/* キラキラ効果の追加 */
+.profile-image-vertical-container::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease 0.2s;
+    z-index: 10;
+}
+
+.profile-image-vertical-container:hover::after {
+    opacity: 1;
+    transform: scale(1);
+    animation: sparkle 1.5s ease-in-out infinite;
+}
+
+/* ===============================
+   デバッグ用テストスタイルを削除
+=============================== */
+/* セクション識別用の背景色（デバッグ用）を削除 */
+section#preview::before,
+.featured-works::before,
+.contact-cta::before {
+    display: none;
+}
+
+/* 強制的にアニメーションを適用（テスト用）を削除 */
+.btn-champagne {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+/* カードの微細な装飾追加 */
+.about-preview-main-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(248, 250, 252, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+/* すべての作品を見るボタン - 紺色系統のホバー効果 */
+a[href="works.html"].btn-champagne {
+    background: transparent;
+    border: 2px solid #2D3748;
+    border-radius: 0;
+    color: #2D3748;
+    position: relative;
+    transition: all var(--transition-smooth);
+}
+
+a[href="works.html"].btn-champagne::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(45, 55, 72, 0.1), rgba(74, 85, 104, 0.15));
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+a[href="works.html"].btn-champagne:hover::before {
+    width: 100%;
+}
+
+a[href="works.html"].btn-champagne:hover {
+    color: #1A202C;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    border-color: #1A202C;
+}
+
+/* パフォーマンス最適化のためのメディアクエリ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* 詳細ボタン - 左から右への紺色背景ホバー効果 */
+.btn-champagne.inline-flex {
+    background: transparent;
+    color: #2D3748;
+    border: 1px solid #2D3748;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.4s ease;
+}
+
+.btn-champagne.inline-flex::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #2D3748, #4A5568);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.btn-champagne.inline-flex:hover {
+    color: white;
+    border-color: #2D3748;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-subtle);
+}
+
+.btn-champagne.inline-flex:hover::before {
+    left: 0;
+}
+
+/* ヒーロータイトルの基本スタイル */
+.hero-title {
+    font-size: 4rem;
+    letter-spacing: 0.15em;
+    color: #333;
+    font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+    font-weight: 400;
+    line-height: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.hero-title span {
+    opacity: 0;
+    transform: translateY(20px);
+    display: inline-block;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: blur(8px);
+    font-style: italic;
+    transform-origin: center bottom;
+    position: relative;
+    cursor: pointer;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero-title span:hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.15),
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        0 0 20px rgba(26, 32, 44, 0.2) !important;
+    color: #1A202C !important;
+    z-index: 1;
+    filter: drop-shadow(0 0 8px rgba(26, 32, 44, 0.3)) !important;
+}
+
+/* 交互に斜めに傾く効果 */
+.hero-title span:nth-child(odd):hover {
+    transform: translateY(-4px) scale(1.2) rotate(-5deg) !important;
+}
+
+.hero-title span:nth-child(even):hover {
+    transform: translateY(-4px) scale(1.2) rotate(5deg) !important;
+}
+
+/* アニメーション後の状態を保持 */
+.hero-title span.animated {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* タイトル装飾のスタイル */
+.title-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 1.2s;
+}
+
+.decoration-line {
+    height: 1px;
+    width: 100px;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(45, 55, 72, 0.3),
+        rgba(45, 55, 72, 0.5),
+        rgba(45, 55, 72, 0.3),
+        transparent
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+.decoration-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+.decoration-line.left::after {
+    animation-delay: 0.5s;
+}
+
+.decoration-line.right::after {
+    animation-delay: 1s;
+}
+
+.decoration-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.decoration-dots span {
+    width: 4px;
+    height: 4px;
+    background: rgba(45, 55, 72, 0.5);
+    border-radius: 50%;
+    animation: dotPulse 2s infinite;
+}
+
+.decoration-dots span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.decoration-dots span:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.8;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 引用文のアニメーション */
+blockquote {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(8px);
+    animation: floatIn 1.2s ease forwards;
+    animation-delay: 2.2s;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+blockquote:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+        0 12px 24px rgba(0, 0, 0, 0.12),
+        0 8px 16px rgba(229, 220, 197, 0.4),
+        0 0 20px rgba(229, 220, 197, 0.2);
+    background-color: rgba(229, 220, 197, 0.25) !important;
+    border-color: #C5A572 !important;
+}
+
+blockquote::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(229, 220, 197, 0.8),
+        transparent
+    );
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+blockquote:hover::after {
+    opacity: 1;
+    bottom: -15px;
+}
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* ===============================
+   About Page Animations
+=============================== */
+.profile-section {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease-out;
+}
+
+.profile-image {
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.skill-card {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s ease-out;
+}
+
+.profile-text {
+    color: #000000 !important;
+}
+
+.profile-text p {
+    color: #000000 !important;
+    opacity: 1 !important;
+    transform: translateY(0);
+    transition: all 0.4s ease-out;
+    position: relative;
+    padding: 0.5rem 0;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.profile-text p:hover {
+    color: #C5A572 !important;
+}
+
+.profile-text p::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    width: 0;
+    height: 2px;
+    background: #C5A572;
+    transition: width 0.3s ease;
+}
+
+.profile-text p:hover::before {
+    width: 15px;
+}
+
+.quote-text {
+    color: #000000 !important;
+    font-style: italic;
+    border-left: 4px solid #C5A572;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 1.5rem;
+    line-height: 1.8;
+}
+
+.quote-text:hover {
+    border-left-color: #000000;
+}
+
+.skill-card {
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(197, 165, 114, 0.1);
+}
+
+.skill-card:hover {
+    border-color: rgba(197, 165, 114, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.skill-item {
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+}
+
+.skill-item:hover {
+    transform: translateX(5px);
+}
+
+.skill-item svg {
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.skill-item:hover svg {
+    transform: rotate(360deg);
+    color: #C5A572 !important;
+    opacity: 1;
+}
+
+.profile-image {
+    transition: all 0.5s ease;
+    border: 1px solid rgba(197, 165, 114, 0.2);
+}
+
+.profile-image:hover {
+    border-color: rgba(197, 165, 114, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.text-highlight {
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    color: #C5A572 !important;
+}
+
+.text-highlight:hover {
+    text-shadow: 0 0 5px rgba(197, 165, 114, 0.2);
+}
+
+.keyword-highlight {
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    color: #000000 !important;
+    border-bottom: 2px solid #C5A572;
+}
+
+.keyword-highlight:hover {
+    color: #C5A572 !important;
+}
+
+.bg-gray-50, .bg-gradient-to-r {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(197, 165, 114, 0.1);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.bg-gray-50:hover, .bg-gradient-to-r:hover {
+    border-color: rgba(197, 165, 114, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* CTAセクションのボタンスタイル */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 4px 15px rgba(197, 165, 114, 0.2);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    z-index: -1;
+}
+
+.btn-primary:hover::before {
+    transform: translateX(100%);
+}
+
+.btn-secondary {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    z-index: -1;
+}
+
+.btn-secondary:hover::before {
+    transform: translateX(100%);
+} 
+
+/* Works filter buttons */
+.filter-btn-ui {
+    appearance: none;
+    background: #ffffff;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+    border-radius: 9999px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.filter-btn-ui:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    border-color: #cbd5e1; /* slate-300 */
+}
+
+.filter-btn-ui.is-active {
+    background: linear-gradient(135deg, var(--color-champagne), var(--color-champagne-light));
+    color: var(--color-champagne-dark);
+    border-color: var(--color-champagne-dark);
+}
+
+.filter-btn-ui:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(197,165,114,0.25);
+}
+/* ===============================
+   資格・認定セクション
+=============================== */
+.qualifications-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 700px) {
+    .qualifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.qualification-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    transition: transform .16s ease, box-shadow .16s ease;
+}
+
+.qualification-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+}
+
+.qualification-card__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.qualification-icon {
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #f0f5ff;
+    color: #2456e6;
+}
+
+.qualification-title {
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+.qualification-meta {
+    margin: 6px 0 10px;
+    padding-left: 18px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.qualification-meta li + li {
+    margin-top: 4px;
+}
+
+.qualification-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.qualification-tag {
+    display: inline-block;
+    padding: 6px 10px;
+    font-size: 0.83rem;
+    border-radius: 999px;
+    background: #f3f4f6;
+    color: #333;
+    border: 1px solid #e5e7eb;
+}
+
+/* コメント風の補足テキスト */
+.qualification-note {
+    margin-top: 8px;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    color: #3f3f46; /* slate-700 相当 */
+    background: #f8fafc; /* slate-50 相当 */
+    border-left: 3px solid #cbd5e1; /* slate-300 */
+    border-radius: 8px;
+}
+/* ===============================
+   Portfolio-Compact Specific Styles
+=============================== */
+
+/* Hero PRO additions */
+.hero-pro{position:relative}
+.hero-pro .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-pro .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.02) brightness(0.98)}
+.hero-pro .hero-bg-gradient{position:absolute;inset:0;background:radial-gradient(60% 60% at 20% 20%, rgba(197,165,114,.22), transparent 60%), radial-gradient(50% 50% at 90% 10%, rgba(197,165,114,.14), transparent 70%), linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.85))}
+.hero-pro .hero-lines{position:absolute;right:-200px;top:-80px;opacity:.22}
+.hero-pro .container{max-width:980px;padding-left:24px;padding-right:24px}
+
+/* Portrait effects */
+.portrait-wrap{position:relative;display:inline-block;perspective:1000px;transform-style:preserve-3d}
+.portrait-img{display:block;border-radius:16px;box-shadow:0 20px 48px rgba(17,24,39,.2);transition:transform .6s cubic-bezier(.16,1,.3,1), filter .6s ease}
+.portrait-wrap:hover .portrait-img{transform:rotateX(5deg) rotateY(-5deg) translateY(-4px) scale(1.01);filter:saturate(1.04) contrast(1.02)}
+.portrait-shine{pointer-events:none;position:absolute;inset:-2px;border-radius:18px;background:radial-gradient(120px 120px at var(--mx,50%) var(--my,50%), rgba(255,255,255,.35), transparent 40%), linear-gradient(120deg, rgba(197,165,114,.14), transparent 60%);opacity:.0;transition:opacity .35s ease}
+.portrait-wrap:hover .portrait-shine{opacity:.6}
+
+/* Featured Works Section */
+.featured-works{background:#f8fafc}
+
+/* Main content fullscreen */
+.main-content-fullscreen{min-height:100vh}
+
+/* Buttons - ensure proper styling */
+.btn{display:inline-block;border-radius:9999px;padding:12px 24px;font-weight:600;transition:all .3s ease;text-decoration:none}
+.btn-primary{background:#374151;color:#fff;border:none}
+.btn-primary:hover{background:#1f2937;transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.btn-ghost{background:transparent;color:#374151;border:2px solid #374151}
+.btn-ghost:hover{background:#374151;color:#fff;transform:translateY(-2px)}
+
+/* Form styling */
+.form{max-width:720px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:2rem;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.form-row{display:flex;flex-direction:column;margin-bottom:1rem}
+.form-row label{font-weight:600;margin-bottom:0.5rem;color:#374151}
+.form-row input,.form-row textarea{border:1px solid #d1d5db;border-radius:12px;padding:12px 16px;font-size:16px;transition:all .3s ease}
+.form-row input:focus,.form-row textarea:focus{outline:none;border-color:#C5A572;box-shadow:0 0 0 3px rgba(197,165,114,.1)}
+.form-actions{display:flex;justify-content:flex-end}
+
+/* Section backgrounds */
+section{position:relative;z-index:1}
+.bg-stone-50{background:#fafaf9}
+.bg-gray-50{background:#f9fafb}
+
+/* ===============================
+   GSAP Override for Compact Version - Always Visible
+=============================== */
+.gsap-fade-up,
+.gsap-fade-left,
+.gsap-fade-right,
+.gsap-scale-up,
+.card.gsap-fade-up,
+.qualification-card.gsap-fade-up {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Ensure sections are visible */
+.qualifications-grid,
+.featured-works,
+.featured-works .card,
+.qualification-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* ===============================
+   Contact Card Hover Effects
+=============================== */
+.contact-card {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), 
+                box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), 
+                border-color 0.35s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(17, 24, 39, 0.12);
+    border-color: #e2d6bf;
+}
+
+.contact-card h3 {
+    position: relative;
+    display: inline-block;
+}
+
+.contact-card h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    margin: 0 auto;
+    width: 48px;
+    height: 2px;
+    background: rgba(197, 165, 114, 0.6);
+    border-radius: 9999px;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.contact-card:hover h3::after {
+    width: 72px;
+    background: rgba(197, 165, 114, 0.9);
+}
+
+/* Contact section text improvements */
+.contact-card p {
+    transition: color 0.3s ease;
+}
+
+.contact-card:hover p {
+    color: #111827;
+}
+
+/* ===============================
+   Ensure Cards are Always Visible and Styled
+=============================== */
+.card, .qualification-card {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: #ffffff;
+    min-height: 200px;
+}
+
+/* Qualification Card specific fixes */
+.qualification-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.qualification-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+    border-color: rgba(197, 165, 114, 0.3);
+}
+
+.qualification-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.qualification-icon {
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #f0f5ff;
+    color: #2456e6;
+}
+
+.qualification-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.qualification-meta {
+    margin: 0.5rem 0 0.75rem;
+    padding-left: 1rem;
+    color: #4b5563;
+    line-height: 1.6;
+    list-style: none;
+}
+
+.qualification-meta li {
+    margin-bottom: 0.25rem;
+}
+
+.qualification-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.qualification-tag {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 9999px;
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+    transition: all 0.25s ease;
+}
+
+.qualification-tag:hover {
+    background: #C5A572;
+    color: #fff;
+    border-color: #C5A572;
+    transform: translateY(-1px);
+}
+
+.qualification-note {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    color: #3f3f46;
+    background: #f8fafc;
+    border-left: 3px solid #cbd5e1;
+    border-radius: 8px;
+    line-height: 1.5;
+}
+
+/* Grid layout for qualifications */
+.qualifications-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 700px) {
+    .qualifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===============================
+   Featured Works Cards - Enhanced
+=============================== */
+.featured-works .card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.85) 100%);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(229, 220, 197, 0.15);
+    display: block !important;
+    opacity: 1 !important;
+}
+
+.featured-works .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 32px 64px rgba(0, 0, 0, 0.08), 0 16px 32px rgba(0, 0, 0, 0.06);
+    border-color: rgba(229, 220, 197, 0.3);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: all 0.4s ease;
+    display: block;
+}
+
+.featured-works .card:hover .card-image {
+    transform: scale(1.1);
+    filter: brightness(1.05) saturate(1.1);
+}
+
+.card-content {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #374151;
+    transition: all 0.3s ease;
+}
+
+.featured-works .card:hover .card-title {
+    color: #C5A572;
+    transform: translateY(-2px);
+}
+
+.card-description {
+    color: #6B7280;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+.featured-works .card:hover .card-description {
+    color: #4B5563;
+}
+
+.card-tag-champagne {
+    background: #E5DCC5;
+    color: #C5A572;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.featured-works .card:hover .card-tag-champagne {
+    background: #C5A572;
+    color: white;
+    transform: translateY(-1px);
+    border-color: #A68B5B;
+}
+
+/* Card冁E�Eボタンスタイル */
+.card .btn-champagne {
+    background: transparent;
+    color: #2D3748;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8rem;
+    position: relative;
+    overflow: hidden;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+.card .btn-champagne::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #2D3748, #4A5568, #2D3748);
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+.card:hover .btn-champagne::before {
+    width: 100%;
+}
+
+.card:hover .btn-champagne {
+    color: #1A202C;
+    transform: translateY(-1px);
+    letter-spacing: 0.5px;
+}
+
+/* すべての作品を見るボタン */
+a[href="works.html"].btn-champagne {
+    background: transparent;
+    border: 2px solid #2D3748;
+    border-radius: 9999px;
+    color: #2D3748;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    position: relative;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+a[href="works.html"].btn-champagne::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(45, 55, 72, 0.1), rgba(74, 85, 104, 0.15));
+    transition: all 0.4s ease;
+    z-index: -1;
+    border-radius: 9999px;
+}
+
+a[href="works.html"].btn-champagne:hover::before {
+    width: 100%;
+}
+
+a[href="works.html"].btn-champagne:hover {
+    color: #1A202C;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    border-color: #1A202C;
+}
+
+/* ===============================
+   UI/UX Enhancement - Section Backgrounds
+=============================== */
+
+/* Hero Section - エレガントなグラチE�Eション */
+.hero-pro {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.98) 0%, 
+        rgba(248, 250, 252, 0.95) 50%,
+        rgba(240, 233, 214, 0.15) 100%
+    );
+}
+
+/* Qualifications Section - 柔らかいベ�Eジュ */
+section[aria-labelledby='qualifications-title'] {
+    background: linear-gradient(180deg, 
+        rgba(250, 249, 246, 1) 0%, 
+        rgba(248, 246, 243, 1) 50%,
+        rgba(245, 243, 240, 1) 100%
+    ) !important;
+    position: relative;
+}
+
+section[aria-labelledby='qualifications-title']::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(197, 165, 114, 0.2), 
+        transparent
+    );
+}
+
+/* Skills Section - クリーンなグレー */
+section#skills {
+    background: linear-gradient(180deg, 
+        rgba(249, 250, 251, 1) 0%, 
+        rgba(243, 244, 246, 1) 100%
+    ) !important;
+    position: relative;
+}
+
+section#skills::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(197, 165, 114, 0.15), 
+        transparent
+    );
+}
+
+/* Featured Works Section - 温かみのあるホワイチE*/
+.featured-works {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 1) 0%,
+        rgba(254, 252, 241, 0.3) 50%,
+        rgba(255, 255, 255, 1) 100%
+    ) !important;
+    position: relative;
+}
+
+.featured-works::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(197, 165, 114, 0.2), 
+        transparent
+    );
+}
+
+/* Contact Section - 落ち着ぁE��グレー */
+section#contact {
+    background: linear-gradient(180deg, 
+        rgba(249, 250, 251, 1) 0%, 
+        rgba(243, 244, 246, 1) 50%,
+        rgba(237, 238, 240, 1) 100%
+    ) !important;
+}
+
+/* ===============================
+   UI/UX Enhancement - Exciting Hover Effects
+=============================== */
+
+/* Section Titles - マジカルなホバー効极E*/
+.section-title {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-title::before {
+    content: '✨';
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.5rem;
+}
+
+.section-title::after {
+    content: '✨';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.5rem;
+}
+
+.section-title:hover::before,
+.section-title:hover::after {
+    transform: translateY(-50%) scale(1) rotate(20deg);
+    opacity: 1;
+}
+
+.section-title:hover {
+    transform: scale(1.05);
+    text-shadow: 0 4px 20px rgba(197, 165, 114, 0.3);
+}
+
+/* Skill Cards - パルス効果とグロー */
+.skill-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(197, 165, 114, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: all 0.6s ease;
+    transform: scale(0);
+}
+
+.skill-card:hover::before {
+    opacity: 1;
+    transform: scale(1);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+/* Skill Items - 弾むアニメーション */
+.skill-item {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.skill-item:hover {
+    transform: translateX(10px) scale(1.05);
+    padding-left: 0.5rem;
+}
+
+.skill-item:hover svg {
+    animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) rotate(10deg);
+    }
+    50% {
+        transform: translateY(0) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-5px) rotate(-10deg);
+    }
+}
+
+/* Qualification Cards - 3D回転効极E*/
+.qualification-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.qualification-card:hover {
+    animation: cardFloat 0.6s ease-in-out;
+}
+
+@keyframes cardFloat {
+    0%, 100% {
+        transform: translateY(-4px) rotateX(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotateX(2deg);
+    }
+}
+
+.qualification-icon {
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.qualification-card:hover .qualification-icon {
+    transform: translateY(-4px) scale(1.2) rotate(360deg);
+    box-shadow: 0 8px 20px rgba(36, 86, 230, 0.3);
+}
+
+/* Featured Works Cards - キラキラ効极E*/
+.featured-works .card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.5) 50%,
+        transparent 70%
+    );
+    transform: rotate(0deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.featured-works .card:hover::after {
+    opacity: 1;
+    animation: shimmer 1.5s ease-in-out;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+/* Card Image - ズームとチE��ルチE*/
+.card-image {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.featured-works .card:hover .card-image {
+    transform: scale(1.15) rotate(2deg);
+}
+
+/* Buttons - 波紋効极E*/
+.btn, .btn-primary, .btn-ghost {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before, .btn-primary::before, .btn-ghost::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::before, .btn-primary:hover::before, .btn-ghost:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Form Inputs - グロー効极E*/
+.form-row input:focus,
+.form-row textarea:focus {
+    animation: inputGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes inputGlow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(197, 165, 114, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(197, 165, 114, 0.6);
+    }
+}
+
+/* ===============================
+   UI/UX Enhancement - Interactive Elements
+=============================== */
+
+/* Navbar Links - アンダーラインアニメーション強匁E*/
+.nav-link-elegant {
+    position: relative;
+}
+
+.nav-link-elegant::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #C5A572, #A68B5B);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(197, 165, 114, 0.4);
+}
+
+.nav-link-elegant:hover::after {
+    width: 100%;
+    animation: glow 1s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 2px 8px rgba(197, 165, 114, 0.4);
+    }
+    50% {
+        box-shadow: 0 2px 15px rgba(197, 165, 114, 0.8);
+    }
+}
+
+/* Portrait Image - マジカルフレーム */
+.portrait-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    background: linear-gradient(45deg, #C5A572, #A68B5B, #C5A572) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.portrait-wrap:hover::after {
+    opacity: 1;
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* Tags - ポップアチE�E効极E*/
+.qualification-tag,
+.card-tag-champagne {
+    cursor: pointer;
+}
+
+.qualification-tag:hover,
+.card-tag-champagne:hover {
+    animation: tagPop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes tagPop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+/* Contact Card - パルス効极E*/
+.contact-card {
+    position: relative;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 0.5rem;
+    padding: 2px;
+    background: linear-gradient(45deg, transparent, rgba(197, 165, 114, 0.3), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.contact-card:hover::before {
+    opacity: 1;
+    animation: borderGlow 2s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        background: linear-gradient(45deg, transparent, rgba(197, 165, 114, 0.3), transparent);
+    }
+    50% {
+        background: linear-gradient(45deg, transparent, rgba(197, 165, 114, 0.6), transparent);
+    }
+}
+
+/* Section Subtitle - フェードイン効极E*/
+.section-subtitle {
+    transition: all 0.3s ease;
+}
+
+.section-subtitle:hover {
+    transform: scale(1.02);
+    letter-spacing: 0.05em;
+}
+
+/* Scroll Indicator Enhancement */
+.elegant-scroll-indicator {
+    cursor: pointer;
+}
+
+.elegant-scroll-indicator:hover {
+    animation: bounce-scroll 1s ease-in-out infinite;
+}
+
+@keyframes bounce-scroll {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, -10px, 0);
+    }
+}
+
+/* Footer Links - アニメーション強匁E*/
+.footer a:not(.social-link) {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer a:not(.social-link):hover {
+    transform: translateY(-2px);
+    padding-left: 8px;
+}
+
+/* Social Links - 弾むアニメーション */
+.social-link {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.social-link:hover {
+    animation: socialBounce 0.6s ease;
+}
+
+@keyframes socialBounce {
+    0%, 100% {
+        transform: translateY(-2px) scale(1);
+    }
+    25% {
+        transform: translateY(-8px) scale(1.1) rotate(5deg);
+    }
+    50% {
+        transform: translateY(-2px) scale(1.05) rotate(-5deg);
+    }
+    75% {
+        transform: translateY(-6px) scale(1.08) rotate(3deg);
+    }
+}
+
+/* Lead Block - パルス効极E*/
+.lead-block {
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.lead-block:hover {
+    transform: translateX(5px);
+    border-left-width: 5px;
+    padding-left: 18px;
+    background: linear-gradient(180deg, 
+        rgba(197, 165, 114, 0.1), 
+        rgba(197, 165, 114, 0.05)
+    );
+    box-shadow: 0 4px 12px rgba(197, 165, 114, 0.2);
+}
+
+/* ===============================
+   UI/UX Enhancement - Micro Interactions
+=============================== */
+
+/* Headline Accent - グラチE�Eションアニメーション */
+.headline-line.accent {
+    background: linear-gradient(90deg, 
+        #374151 0%, 
+        #C5A572 50%, 
+        #374151 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 100% center;
+    }
+}
+
+/* Grid Items - スタガードアニメーション */
+.grid > * {
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.grid > *:nth-child(1) { animation-delay: 0.1s; }
+.grid > *:nth-child(2) { animation-delay: 0.2s; }
+.grid > *:nth-child(3) { animation-delay: 0.3s; }
+.grid > *:nth-child(4) { animation-delay: 0.4s; }
+.grid > *:nth-child(5) { animation-delay: 0.5s; }
+.grid > *:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button Click Effect - リチE�Eル */
+.btn, .btn-primary, .btn-ghost, .btn-champagne {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:active, .btn-primary:active, .btn-ghost:active, .btn-champagne:active {
+    transform: scale(0.95);
+}
+
+/* Form Submit Button - サクセスアニメーション */
+.btn-primary:hover {
+    animation: buttonPulse 1s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(197, 165, 114, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(197, 165, 114, 0);
+    }
+}
+
+/* Qualification Meta List - ホバーハイライチE*/
+.qualification-meta li {
+    transition: all 0.3s ease;
+    padding: 0.25rem 0;
+    border-radius: 4px;
+}
+
+.qualification-meta li:hover {
+    background: rgba(197, 165, 114, 0.1);
+    padding-left: 0.75rem;
+    transform: translateX(5px);
+}
+
+/* Card Description - チE��ストハイライチE*/
+.card-description,
+.work-description {
+    position: relative;
+}
+
+.card:hover .card-description::first-letter,
+.work-card:hover .work-description::first-letter {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #C5A572;
+    transition: all 0.3s ease;
+}
+
+/* Section Dividers - アニメーション */
+section::before {
+    animation: dividerGlow 3s ease-in-out infinite;
+}
+
+@keyframes dividerGlow {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Cursor Trail Effect on Cards */
+.card, .qualification-card, .skill-card {
+    position: relative;
+}
+
+.card::after, .qualification-card::after, .skill-card::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(197, 165, 114, 0.2), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transform: translate(-50%, -50%);
+}
+
+.card:hover::after, 
+.qualification-card:hover::after, 
+.skill-card:hover::after {
+    opacity: 1;
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading State for Images */
+img {
+    transition: opacity 0.3s ease;
+}
+
+img:not([src]) {
+    opacity: 0;
+}
+
+/* Focus Visible Enhancement */
+*:focus-visible {
+    outline: 3px solid rgba(197, 165, 114, 0.5);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Text Selection Styling */
+::selection {
+    background: rgba(197, 165, 114, 0.3);
+    color: #1f2937;
+}
+
+::-moz-selection {
+    background: rgba(197, 165, 114, 0.3);
+    color: #1f2937;
+}
+
+/* Reduce Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header-main,
+    .mobile-nav,
+    .btn,
+    .elegant-scroll-indicator {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+    }
+    
+    .card, .qualification-card, .skill-card {
+        page-break-inside: avoid;
+    }
+}
+
+/* ===============================
+   Qualification Card - Enhanced Scale Effect
+=============================== */
+.qualification-card {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.qualification-card:hover {
+    transform: translateY(-8px) scale(1.03) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 
+                0 10px 20px rgba(197, 165, 114, 0.2) !important;
+    border-color: rgba(197, 165, 114, 0.4) !important;
+    z-index: 10;
+}
+
+/* ===============================
+   Section Title Center Fix
+=============================== */
+.text-center .section-title,
+section .section-title.text-center {
+    display: block !important;
+    width: 100%;
+    text-align: center;
+}
+
+/* Contact Section Title - Ensure Center Alignment */
+section#contact .section-title {
+    display: block !important;
+    width: 100%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+}
+
+/* ===============================
+   Qualification Card - Refined Smooth Effect
+=============================== */
+.qualification-card {
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.qualification-card:hover {
+    transform: translateY(-6px) scale(1.015) !important;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12), 
+                0 8px 16px rgba(197, 165, 114, 0.15) !important;
+    border-color: rgba(197, 165, 114, 0.35) !important;
+    z-index: 10;
+}
+
+/* ===============================
+   Hero Background Video - Enhanced Visibility
+=============================== */
+.hero-pro .hero-bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(60% 60% at 20% 20%, rgba(197,165,114,.15), transparent 60%), 
+        radial-gradient(50% 50% at 90% 10%, rgba(197,165,114,.10), transparent 70%), 
+        linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.55)) !important;
+}
+
+/* Video brightness adjustment */
+.hero-pro .hero-video {
+    filter: saturate(1.1) contrast(1.05) brightness(1.05) !important;
+}
+
+/* ===============================
+   Hero Background - Adjusted to More White
+=============================== */
+.hero-pro .hero-bg-gradient {
+    background: 
+        radial-gradient(60% 60% at 20% 20%, rgba(197,165,114,.18), transparent 60%), 
+        radial-gradient(50% 50% at 90% 10%, rgba(197,165,114,.12), transparent 70%), 
+        linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.65)) !important;
+}
+
+/* ===============================
+   Hero Background - Much More White!!
+=============================== */
+.hero-pro .hero-bg-gradient {
+    background: 
+        radial-gradient(60% 60% at 20% 20%, rgba(197,165,114,.20), transparent 60%), 
+        radial-gradient(50% 50% at 90% 10%, rgba(197,165,114,.15), transparent 70%), 
+        linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.80)) !important;
+}
