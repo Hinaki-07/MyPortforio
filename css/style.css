@@ -3353,3 +3353,24 @@ section#contact .section-title {
         radial-gradient(50% 50% at 90% 10%, rgba(197,165,114,.15), transparent 70%), 
         linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.80)) !important;
 }
+
+/* ===============================
+   Hero Video - Smooth Loading
+=============================== */
+.hero-bg {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.hero-video {
+    opacity: 0;
+    animation: fadeInVideo 0.8s ease-in 0.2s forwards;
+}
+
+@keyframes fadeInVideo {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
