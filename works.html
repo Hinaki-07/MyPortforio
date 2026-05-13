@@ -98,26 +98,14 @@
 
         <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
             <div class="container mx-auto px-4 text-center">
-                <h1 class="text-5xl md:text-6xl font-display font-bold mb-6 gsap-fade-up">
+                <h2 class="text-5xl md:text-6xl font-display font-bold mb-6 gsap-fade-up">
                     My <span class="text-gold">Works</span>
-                </h1>
+                </h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto gsap-fade-up" style="animation-delay: 0.3s;">
-                    これまでに手がけたプロジェクトの一部をご紹介します。<br>
-                    各プロジェクトには情熱と技術を注ぎ込んでいます。
+                    実在する制作物を中心に、目的・担当範囲・工夫した点が伝わる形でまとめています。<br>
+                    いま見せられるものを、誠実に磨き続けています。
                 </p>
                 <div class="decoration-line mx-auto gsap-scale-up" style="animation-delay: 0.6s;"></div>
-            </div>
-        </section>
-
-        <section class="py-8 bg-white border-b">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-wrap justify-center gap-3 md:gap-4" role="tablist" aria-label="Works filter">
-                    <button class="filter-btn-ui is-active" data-filter="all" role="tab" aria-selected="true" aria-controls="works-grid">All</button>
-                    <button class="filter-btn-ui" data-filter="web" role="tab" aria-selected="false" aria-controls="works-grid">Web Development</button>
-                    <button class="filter-btn-ui" data-filter="design" role="tab" aria-selected="false" aria-controls="works-grid">UI/UX Design</button>
-                    <button class="filter-btn-ui" data-filter="mobile" role="tab" aria-selected="false" aria-controls="works-grid">Mobile App</button>
-                    <button class="filter-btn-ui" data-filter="branding" role="tab" aria-selected="false" aria-controls="works-grid">Branding</button>
-                </div>
             </div>
         </section>
 
@@ -134,13 +122,24 @@
                                     <p class="text-sm mb-4">心と体を整えるヨガスタジオLP</p>
                                     <div class="flex gap-2">
                                         <a href="https://hinaki-07.github.io/yogasite/" target="_blank" rel="noopener noreferrer" class="btn-small">Live Demo</a>
+                                        <a href="https://github.com/Hinaki-07/yogasite" target="_blank" rel="noopener noreferrer" class="btn-small-outline">GitHub</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="work-content">
                             <h3 class="work-title">YogaSite</h3>
-                            <p class="work-description">ヨガスタジオ向けモダンなランディングページ。グラスモーフィズム・パララックス効果を活用。</p>
+                            <p class="work-description">ヨガスタジオ向けのランディングページ。落ち着いた世界観と予約導線のわかりやすさを両立しました。</p>
+                            <dl class="grid gap-2 mb-4 p-3 rounded-xl bg-gray-50 border border-gray-100 text-sm">
+                                <div class="grid grid-cols-[4.5rem_1fr] gap-2">
+                                    <dt class="font-semibold text-gold-dark">担当</dt>
+                                    <dd class="text-gray-600">構成、UI設計、HTML/CSS/JavaScript実装</dd>
+                                </div>
+                                <div class="grid grid-cols-[4.5rem_1fr] gap-2">
+                                    <dt class="font-semibold text-gold-dark">工夫</dt>
+                                    <dd class="text-gray-600">ファーストビュー、講師紹介、レッスン紹介まで一貫したトーンで設計</dd>
+                                </div>
+                            </dl>
                             <div class="work-tags">
                                 <span class="work-tag">HTML</span>
                                 <span class="work-tag">CSS</span>
@@ -167,7 +166,17 @@
                         </div>
                         <div class="work-content">
                             <h3 class="work-title">治療院ほとり</h3>
-                            <p class="work-description">一軒家を改装した鍼灸・整体院のLP。癒しと安心感を演出するデザイン。</p>
+                            <p class="work-description">一軒家を改装した鍼灸・整体院のLP。初めて訪れる人にも安心感が伝わる情報設計を意識しました。</p>
+                            <dl class="grid gap-2 mb-4 p-3 rounded-xl bg-gray-50 border border-gray-100 text-sm">
+                                <div class="grid grid-cols-[4.5rem_1fr] gap-2">
+                                    <dt class="font-semibold text-gold-dark">担当</dt>
+                                    <dd class="text-gray-600">構成、ビジュアル設計、レスポンシブ実装</dd>
+                                </div>
+                                <div class="grid grid-cols-[4.5rem_1fr] gap-2">
+                                    <dt class="font-semibold text-gold-dark">工夫</dt>
+                                    <dd class="text-gray-600">施術内容・空間・予約導線を自然に追えるよう、やわらかい余白で整理</dd>
+                                </div>
+                            </dl>
                             <div class="work-tags">
                                 <span class="work-tag">HTML</span>
                                 <span class="work-tag">CSS</span>
@@ -188,170 +197,30 @@
                                     <p class="text-sm mb-4">光と静寂のサンクチュアリ</p>
                                     <div class="flex gap-2">
                                         <a href="https://hinaki-07.github.io/hotel1/" target="_blank" rel="noopener noreferrer" class="btn-small">Live Demo</a>
+                                        <a href="https://github.com/Hinaki-07/hotel1" target="_blank" rel="noopener noreferrer" class="btn-small-outline">GitHub</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="work-content">
                             <h3 class="work-title">LUMIÈRE TOKYO</h3>
-                            <p class="work-description">高級ホテルのコーポレートサイト。動画背景・3Dエフェクト・パララックスを活用した洗練されたデザイン。</p>
+                            <p class="work-description">高級ホテルを想定した複数ページ構成のサイト。上質感を保ちながら、客室・食事・スパへ迷わず進める導線を設計しました。</p>
+                            <dl class="grid gap-2 mb-4 p-3 rounded-xl bg-gray-50 border border-gray-100 text-sm">
+                                <div class="grid grid-cols-[4.5rem_1fr] gap-2">
+                                    <dt class="font-semibold text-gold-dark">担当</dt>
+                                    <dd class="text-gray-600">複数ページ構成、ビジュアル設計、アニメーション実装</dd>
+                                </div>
+                                <div class="grid grid-cols-[4.5rem_1fr] gap-2">
+                                    <dt class="font-semibold text-gold-dark">工夫</dt>
+                                    <dd class="text-gray-600">動画背景やスクロール演出を使い、ホテルらしい非日常感を表現</dd>
+                                </div>
+                            </dl>
                             <div class="work-tags">
                                 <span class="work-tag">HTML</span>
                                 <span class="work-tag">CSS</span>
                                 <span class="work-tag">JavaScript</span>
                                 <span class="work-tag">動画背景</span>
                                 <span class="work-tag">3Dエフェクト</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- カード群: 本体と同様に画像パスはassets配下を参照 -->
-                    <div class="work-card" data-category="web">
-                        <div class="work-image-container">
-                            <img src="../portfolio/assets/images/work1.jpg" alt="E-commerce Platform" class="work-image" width="400" height="300" loading="lazy" decoding="async">
-                            <div class="work-overlay">
-                                <div class="work-overlay-content">
-                                    <h3 class="text-xl font-semibold mb-2">E-commerce Platform</h3>
-                                    <p class="text-sm mb-4">モダンなオンラインショッピング体験</p>
-                                    <div class="flex gap-2">
-                                        <a href="#" class="btn-small">詳細</a>
-                                        <a href="#" class="btn-small-outline">Live Demo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="work-content">
-                            <h3 class="work-title">E-commerce Platform</h3>
-                            <p class="work-description">React + Node.jsで構築したモダンなECサイト</p>
-                            <div class="work-tags">
-                                <span class="work-tag">React</span>
-                                <span class="work-tag">Node.js</span>
-                                <span class="work-tag">MongoDB</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="work-card" data-category="mobile design">
-                        <div class="work-image-container">
-                            <img src="../portfolio/assets/images/work2.jpg" alt="Mobile Banking App" class="work-image" width="400" height="300" loading="lazy" decoding="async">
-                            <div class="work-overlay">
-                                <div class="work-overlay-content">
-                                    <h3 class="text-xl font-semibold mb-2">Banking App UI</h3>
-                                    <p class="text-sm mb-4">直感的な金融アプリデザイン</p>
-                                    <div class="flex gap-2">
-                                        <a href="#" class="btn-small">詳細</a>
-                                        <a href="#" class="btn-small-outline">Prototype</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="work-content">
-                            <h3 class="work-title">Mobile Banking App</h3>
-                            <p class="work-description">ユーザビリティを重視したモバイルバンキングUI</p>
-                            <div class="work-tags">
-                                <span class="work-tag">Figma</span>
-                                <span class="work-tag">UI Design</span>
-                                <span class="work-tag">Prototyping</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="work-card" data-category="web design">
-                        <div class="work-image-container">
-                            <img src="../portfolio/assets/images/work3.jpg" alt="Corporate Website" class="work-image" width="400" height="300" loading="lazy" decoding="async">
-                            <div class="work-overlay">
-                                <div class="work-overlay-content">
-                                    <h3 class="text-xl font-semibold mb-2">Corporate Website</h3>
-                                    <p class="text-sm mb-4">プロフェッショナルな企業サイト</p>
-                                    <div class="flex gap-2">
-                                        <a href="#" class="btn-small">詳細</a>
-                                        <a href="#" class="btn-small-outline">Visit Site</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="work-content">
-                            <h3 class="work-title">Corporate Website</h3>
-                            <p class="work-description">信頼性とモダンさを両立した企業サイト</p>
-                            <div class="work-tags">
-                                <span class="work-tag">WordPress</span>
-                                <span class="work-tag">PHP</span>
-                                <span class="work-tag">SEO</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="work-card" data-category="branding design">
-                        <div class="work-image-container">
-                            <img src="../portfolio/assets/images/work4.jpg" alt="Brand Identity" class="work-image" width="400" height="300" loading="lazy" decoding="async">
-                            <div class="work-overlay">
-                                <div class="work-overlay-content">
-                                    <h3 class="text-xl font-semibold mb-2">Brand Identity</h3>
-                                    <p class="text-sm mb-4">統一されたブランド体験</p>
-                                    <div class="flex gap-2">
-                                        <a href="#" class="btn-small">詳細</a>
-                                        <a href="#" class="btn-small-outline">Gallery</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="work-content">
-                            <h3 class="work-title">Brand Identity Design</h3>
-                            <p class="work-description">ロゴからガイドラインまで包括的なブランディング</p>
-                            <div class="work-tags">
-                                <span class="work-tag">Illustrator</span>
-                                <span class="work-tag">Branding</span>
-                                <span class="work-tag">Logo Design</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="work-card" data-category="web design">
-                        <div class="work-image-container">
-                            <img src="../portfolio/assets/images/work5.jpg" alt="SaaS Dashboard" class="work-image" width="400" height="300" loading="lazy" decoding="async">
-                            <div class="work-overlay">
-                                <div class="work-overlay-content">
-                                    <h3 class="text-xl font-semibold mb-2">SaaS Dashboard</h3>
-                                    <p class="text-sm mb-4">データ可視化ダッシュボード</p>
-                                    <div class="flex gap-2">
-                                        <a href="#" class="btn-small">詳細</a>
-                                        <a href="#" class="btn-small-outline">Demo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="work-content">
-                            <h3 class="work-title">SaaS Dashboard</h3>
-                            <p class="work-description">複雑なデータを分かりやすく表示するダッシュボード</p>
-                            <div class="work-tags">
-                                <span class="work-tag">Vue.js</span>
-                                <span class="work-tag">D3.js</span>
-                                <span class="work-tag">API</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="work-card" data-category="mobile design">
-                        <div class="work-image-container">
-                            <img src="../portfolio/assets/images/work6.jpg" alt="Food Delivery App" class="work-image" width="400" height="300" loading="lazy" decoding="async">
-                            <div class="work-overlay">
-                                <div class="work-overlay-content">
-                                    <h3 class="text-xl font-semibold mb-2">Food Delivery App</h3>
-                                    <p class="text-sm mb-4">美味しい体験をデザイン</p>
-                                    <div class="flex gap-2">
-                                        <a href="#" class="btn-small">詳細</a>
-                                        <a href="#" class="btn-small-outline">Prototype</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="work-content">
-                            <h3 class="work-title">Food Delivery App</h3>
-                            <p class="work-description">直感的で魅力的なフードデリバリーアプリUI</p>
-                            <div class="work-tags">
-                                <span class="work-tag">React Native</span>
-                                <span class="work-tag">UX Design</span>
-                                <span class="work-tag">Animation</span>
                             </div>
                         </div>
                     </div>
@@ -411,28 +280,12 @@
             </div>
 
             <div class="footer-copy">
-                <p>&copy; 2025 Omizu Hinaki. All rights reserved. </p>
+                <p>&copy; 2026 Omizu Hinaki. All rights reserved. </p>
             </div>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
-    <script>
-        (function () {
-            var list = document.querySelector('[role="tablist"]');
-            if (!list) return;
-            list.addEventListener('click', function (e) {
-                var btn = e.target.closest('.filter-btn-ui');
-                if (!btn) return;
-                list.querySelectorAll('.filter-btn-ui').forEach(function (el) {
-                    el.classList.remove('is-active');
-                    el.setAttribute('aria-selected', 'false');
-                });
-                btn.classList.add('is-active');
-                btn.setAttribute('aria-selected', 'true');
-            });
-        })();
-    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.gsap-fade-up').forEach(function (el) {
